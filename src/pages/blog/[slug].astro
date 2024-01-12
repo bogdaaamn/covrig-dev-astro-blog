@@ -1,6 +1,8 @@
 ---
 import { getEntry } from "astro:content";
 
+import BigTitle from "../../components/ui/title.tsx";
+
 // Get slug from URL
 const { slug } = Astro.params;
 
@@ -15,8 +17,13 @@ if (entry === undefined) {
   return Astro.redirect("/404");
 }
 
+// Get the entry data
+const { title } = entry.data;
+
 // Render the entry
 const { Content } = await entry.render();
 ---
+
+<BigTitle>{title}</BigTitle>
 
 <Content />
